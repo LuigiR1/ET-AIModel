@@ -1,17 +1,22 @@
 <!-- templates/form.html -->
 <html>
   <head>
-    <title>FastAPI Form Example</title>
+    <title>Resume Analyzer</title>
   </head>
   <body>
-    <h1>Prompt a Model</h1>
-    <form method="post">
-      <label for="prompt">Enter a prompt:</label>
-      <input type="text" id="prompt" name="prompt" required />
-      <button type="submit">Submit</button>
+    <h1>Upload Your Resume & Enter Job Description</h1>
+    <form method="post" enctype="multipart/form-data">
+      <label for="prompt">Job Description / Keywords:</label><br />
+      <textarea id="prompt" name="prompt" rows="5" cols="50" required></textarea><br /><br />
+
+      <label for="resume">Upload Resume (PDF or DOCX):</label><br />
+      <input type="file" id="resume" name="resume" accept=".pdf,.docx" required /><br /><br />
+
+      <button type="submit">Analyze Resume</button>
     </form>
+
     {% if response %}
-    <h2>Response:</h2>
+    <h2>Results:</h2>
     <p>{{ response }}</p>
     {% endif %}
   </body>
