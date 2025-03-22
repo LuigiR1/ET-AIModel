@@ -1,23 +1,105 @@
 <!-- templates/form.html -->
+<!DOCTYPE html>
 <html>
   <head>
     <title>Resume Analyzer</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #121212;
+        color: #f5f5f5;
+        padding: 2rem;
+        margin: 0;
+      }
+
+      h1 {
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 2rem;
+      }
+
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #1e1e1e;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: #e0e0e0;
+      }
+
+      textarea,
+      input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      button {
+        display: block;
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0.75rem;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      .result {
+        max-width: 600px;
+        margin: 2rem auto;
+        background-color: #1e1e1e;
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid #333;
+        white-space: pre-wrap;
+        color: #f5f5f5;
+      }
+
+      h2 {
+        text-align: center;
+        color: #f0f0f0;
+      }
+    </style>
   </head>
   <body>
-    <h1>Upload Your Resume & Enter Job Description</h1>
-    <form method="post" enctype="multipart/form-data">
-      <label for="prompt">Job Description / Keywords:</label><br />
-      <textarea id="prompt" name="prompt" rows="5" cols="50" required></textarea><br /><br />
+    <h1>Resume Analyzer</h1>
 
-      <label for="resume">Upload Resume (PDF or DOCX):</label><br />
-      <input type="file" id="resume" name="resume" accept=".pdf,.docx" required /><br /><br />
+    <form method="post" enctype="multipart/form-data">
+      <label for="prompt">Job Description / Keywords:</label>
+      <textarea id="prompt" name="prompt" rows="5" required></textarea>
+
+      <label for="resume">Upload Resume (PDF or DOCX):</label>
+      <input type="file" id="resume" name="resume" accept=".pdf,.docx" required />
 
       <button type="submit">Analyze Resume</button>
     </form>
 
     {% if response %}
-    <h2>Results:</h2>
-    <p>{{ response }}</p>
+    <div class="result">
+      <h2>Analysis Results</h2>
+      <p>{{ response }}</p>
+    </div>
     {% endif %}
   </body>
 </html>
